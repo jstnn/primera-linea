@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1593378844}
   - component: {fileID: 1593378843}
   - component: {fileID: 1593378842}
-  m_Layer: 0
+  - component: {fileID: 1593378846}
+  m_Layer: 2
   m_Name: PipeCollider
-  m_TagString: Untagged
+  m_TagString: Collide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593378841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -89,10 +90,22 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 1.07
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1593378846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593378841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb82060ae8298451baa2754c8b4a5037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &31687928149940466
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +679,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4540966104915658955}
   - component: {fileID: 504066423}
-  - component: {fileID: 504066424}
   m_Layer: 0
   m_Name: guanaco
   m_TagString: Untagged
@@ -700,18 +712,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a592b3c701eda45fe92c3e232a375116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &504066424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540966104915658952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb82060ae8298451baa2754c8b4a5037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4540966105688865410

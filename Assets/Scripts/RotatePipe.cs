@@ -34,6 +34,8 @@ public class RotatePipe : MonoBehaviour
 
         rotating = false;
 
+        yield return new WaitForSeconds(2);
+
         // After we have waited 5 seconds print the time again.
         // Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         StartCoroutine(Flush());
