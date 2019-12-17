@@ -5,11 +5,10 @@ using System.Collections;
 
 public class Restart : MonoBehaviour
 {
-    public Button yourButton;
 
     void Start()
     {
-        Button btn = yourButton.GetComponent<Button>();
+        Button btn = GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
     }
 

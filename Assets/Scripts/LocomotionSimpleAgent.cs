@@ -28,14 +28,14 @@ public class LocomotionSimpleAgent : MonoBehaviour
         Vector2 deltaPosition = new Vector2(dx, dy);
 
         // Low-pass filter the deltaMove
-        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.8f);
+        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.7f);
         smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, deltaPosition, smooth);
 
         // Update velocity if time advances
         if (Time.deltaTime > 1e-5f)
             velocity = smoothDeltaPosition / Time.deltaTime;
 
-        bool shouldMove = velocity.magnitude > 1.5f && agent.remainingDistance > agent.radius;
+        bool shouldMove = velocity.magnitude > 0.5f && agent.remainingDistance > agent.radius;
 
         // Update animation parameters
         anim.SetBool("move", shouldMove);

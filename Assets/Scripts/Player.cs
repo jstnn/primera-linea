@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     public void DoRagdoll(bool isRagdoll)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Debug.Log("DoRagdoll: "+ isRagdoll);
         foreach (var col in AllColliders)
             col.enabled = isRagdoll;
 
@@ -33,7 +32,7 @@ public class Player : MonoBehaviour
         GetComponent<Animator>().enabled = !isRagdoll;
         GetComponent<LocomotionSimpleAgent>().enabled = !isRagdoll;
         GetComponent<ClickToMove>().enabled = !isRagdoll;
-        //agent.enabled = !isRagdoll;
+        agent.enabled = !isRagdoll;
         //agent.isStopped = !isRagdoll;
     }
 }
