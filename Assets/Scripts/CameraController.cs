@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GameManager))]
 public class CameraController : MonoBehaviour
 {
-    public Transform target;
     public float smoothing = 5f;
     Vector3 offset;
-
-    // Use this for initialization
-    void Start()
-    {
-        offset = transform.position - target.position;
-    }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 targetCamPos = target.position + offset;
-        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+        GameObject[] players = GetComponent<GameManager>().players;
+        if (players.Length > 0)
+        {
+            GameObject target = players[players.Length-1];
+            Vector3 targetCamPos = target.transform.position + offset;
+            transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+        }
     }
 }

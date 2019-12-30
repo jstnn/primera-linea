@@ -1,16 +1,35 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using MonsterLove.StateMachine;
 
 public class PipeController : MonoBehaviour
 {
-
-    void OnTriggerEnter(Collider collision)
+    public enum States
     {
-        Player player = collision.transform.GetComponent<Player>();
-        if (player)
+        Idle,
+        Moving,
+        Dead
+    }
+    public ParticleSystem waterLauncher;
+    List<ParticleCollisionEvent> collisionEvents;
+
+    void Start()
+    {
+        collisionEvents = new List<ParticleCollisionEvent>();
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        ParticlePhysicsExtensions.GetCollisionEvents(waterLauncher, other, collisionEvents);
+        for (int i = 0; i < collisionEvents.Count; i++)
         {
-            player.DoRagdoll(true);
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            if (rb)
+            {
+                Player player = other.GetComponent<Player>();
+                player.DoDamage(10);
+            }
         }
     }
 }
