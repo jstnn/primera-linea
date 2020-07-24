@@ -48,6 +48,9 @@ public class LocomotionSimpleAgent : MonoBehaviour
     void OnAnimatorMove()
     {
         // Update position to agent position
-        transform.position = agent.nextPosition;
+        if (agent)
+        {
+            transform.position = agent.nextPosition;
+        }
     }
 }

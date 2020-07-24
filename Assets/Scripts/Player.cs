@@ -7,11 +7,12 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(GameManager))]
 public class Player : MonoBehaviour
 {
     public enum States
     {
-        Playing,
+        Active,
         Dead
     }
     public CapsuleCollider MainCollider;
@@ -22,11 +23,13 @@ public class Player : MonoBehaviour
     private NavMeshAgent agent;
     private StateMachine<States> fsm;
     private Animator anim;
+    private GameManager gameManager;
 
     // Use this for initialization
     void Awake()
     {
-        fsm = StateMachine<States>.Initialize(this, States.Playing);
+        fsm = StateMachine<States>.Initialize(this, States.Active);
+        gameManager = GetComponent<GameManager>();
         anim = GetComponent<Animator>();
         MainCollider = GetComponent<CapsuleCollider>();
         AllColliders = GetComponentsInChildren<CapsuleCollider>(true);
@@ -49,18 +52,13 @@ public class Player : MonoBehaviour
         //agent.isStopped = !isRagdoll;
     }
 
-    public void Die()
-    {
-        DoRagdoll(true);
-    }
-
     public void DoDamage(int damage)
     {
-        health -= damage;
         Debug.Log("recieved damage");
+        health -= damage;
     }
 
-    private void Playing_Update()
+    private void Active_Update()
     {
         if (health<1)
         {
@@ -70,8 +68,9 @@ public class Player : MonoBehaviour
 
     private void Dead_Enter()
     {
-        Die();
         Debug.Log("DIED XXXX LOL");
+        DoRagdoll(true);
+        gameManager.RemovePlayer(gameObject);
     }
 
 

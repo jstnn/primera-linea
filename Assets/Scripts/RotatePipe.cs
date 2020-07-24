@@ -10,7 +10,7 @@ public class RotatePipe : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pipe = GameObject.Find("Pipe");
+        pipe = GameObject.Find("WaterWuanaco");
         StartCoroutine(Flush());
     }
 

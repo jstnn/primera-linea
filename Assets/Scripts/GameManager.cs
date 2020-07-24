@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MonsterLove.StateMachine;
+using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CameraController))]
 public class GameManager : MonoBehaviour
@@ -15,16 +17,22 @@ public class GameManager : MonoBehaviour
         Lose
     }
 
+    public int startingPlayers = 1;
     public Transform startPoint;
     public GameObject prefab;
-    public GameObject[] players;
+    public List<GameObject> players = new List<GameObject>();
 
     private StateMachine<States> fsm;
     private CameraController camera;
 
+    public void RemovePlayer(GameObject deadPlayer)
+    {
+        Debug.Log(deadPlayer);
+        players.Remove(deadPlayer);
+    }
+
     private void Awake()
     {
-
         //Initialize State Machine Engine		
         fsm = StateMachine<States>.Initialize(this, States.Init);
 
@@ -55,16 +63,16 @@ public class GameManager : MonoBehaviour
     private void Play_Enter()
     {
         Debug.Log("FIGHT!");
-        for (int i = 0; i < players.Length + 1; i++)
+        for (int i = 0; i < startingPlayers; i++)
         {
             GameObject rioter = Instantiate(prefab, startPoint.position, Quaternion.identity) as GameObject;
-            players[i] = rioter;
+            players.Add(rioter);
         }
     }
 
     private void Play_Update()
     {
-        if (players.Length < 0)
+        if (players.Count < 0)
         {
             fsm.ChangeState(States.Lose);
         }
@@ -108,7 +116,7 @@ public class GameManager : MonoBehaviour
                 fsm.ChangeState(States.Win);
             }
 
-            GUILayout.Label("Health: " + Mathf.Round(players.Length * 100).ToString());
+            GUILayout.Label("Health: " + Mathf.Round(players.Count * 100).ToString());
         }
         if (state == States.Win || state == States.Lose)
         {

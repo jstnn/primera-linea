@@ -10,10 +10,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        GameObject[] players = GetComponent<GameManager>().players;
-        if (players.Length > 0)
+        if (GetComponent<GameManager>().players.Count > 0)
         {
-            GameObject target = players[players.Length-1];
+            GameObject target = GetComponent<GameManager>().players[0];
             Vector3 targetCamPos = target.transform.position + offset;
             transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
         }

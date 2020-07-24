@@ -1596,7 +1596,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -11.87
+  near clip plane: -30
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -1655,6 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58435e451aa24e24a866d636cb05e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingPlayers: 1
   startPoint: {fileID: 1617836019}
   prefab: {fileID: 4856170243785626708, guid: 83d42f51942714bacb3d0c68ec3d70b3, type: 3}
   players: []
@@ -1833,6 +1834,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296172669271979850, guid: 83d42f51942714bacb3d0c68ec3d70b3,
+        type: 3}
+      propertyPath: m_Mass
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83d42f51942714bacb3d0c68ec3d70b3, type: 3}
@@ -2174,6 +2180,31 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.collisionMessages
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540966105688865532, guid: 697dec31594e347ceacef89cd0d0be22,
+        type: 3}
+      propertyPath: CollisionModule.maxKillSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540966105688865532, guid: 697dec31594e347ceacef89cd0d0be22,
+        type: 3}
+      propertyPath: CollisionModule.maxCollisionShapes
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540966105688865532, guid: 697dec31594e347ceacef89cd0d0be22,
+        type: 3}
+      propertyPath: CollisionModule.quality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540966105688865532, guid: 697dec31594e347ceacef89cd0d0be22,
+        type: 3}
+      propertyPath: CollisionModule.voxelSize
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540966105688865532, guid: 697dec31594e347ceacef89cd0d0be22,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4540966104915658955, guid: 697dec31594e347ceacef89cd0d0be22,
         type: 3}
