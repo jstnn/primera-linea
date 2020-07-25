@@ -15,8 +15,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../Examples-fmod/Examples-fmod.fspro
-  sourceBankPath: ../Examples-fmod/Build
+  sourceProjectPath: music/music.fspro
+  sourceBankPath: music/Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
