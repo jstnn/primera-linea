@@ -18,7 +18,7 @@ public class RotatePipe : MonoBehaviour
     {
         if(rotating)
         {
-            pipe.transform.Rotate(0.0f, 0.8f, 0.0f, Space.Self);
+            pipe.transform.Rotate(0.0f, 0.1f, 0.0f, Space.Self);
         }
     }
 
