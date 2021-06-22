@@ -39,17 +39,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     public void DoRagdoll(bool isRagdoll)
     {
-        // GetComponent<Rigidbody>().velocity = Vector3.zero;
-        // foreach (var col in AllColliders)
-        //     col.enabled = isRagdoll;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        foreach (var col in AllColliders)
+            col.enabled = isRagdoll;
 
-        // MainCollider.enabled = !isRagdoll;
-        // GetComponent<Rigidbody>().useGravity = !isRagdoll;
-        // GetComponent<Animator>().enabled = !isRagdoll;
-        // GetComponent<LocomotionSimpleAgent>().enabled = !isRagdoll;
-        // GetComponent<ClickToMove>().enabled = !isRagdoll;
-        // agent.enabled = !isRagdoll;
-        //agent.isStopped = !isRagdoll;
+        MainCollider.enabled = !isRagdoll;
+        GetComponent<Rigidbody>().useGravity = !isRagdoll;
+        GetComponent<Animator>().enabled = !isRagdoll;
+        GetComponent<LocomotionSimpleAgent>().enabled = !isRagdoll;
+        GetComponent<ClickToMove>().enabled = !isRagdoll;
+        agent.enabled = !isRagdoll;
+        agent.isStopped = !isRagdoll;
     }
 
     public void DoDamage(int damage)
