@@ -5,6 +5,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
     public float smoothing = 5f;
+    public GameObject camera;
     Vector3 offset;
 
     // Update is called once per frame
@@ -14,7 +15,7 @@ public class CameraController : MonoBehaviour
         {
             GameObject target = GetComponent<GameManager>().players[0];
             Vector3 targetCamPos = target.transform.position + offset;
-            transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+            camera.transform.position = Vector3.Lerp(camera.transform.position, targetCamPos, smoothing * Time.deltaTime);
         }
     }
 }

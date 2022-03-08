@@ -103,6 +103,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297153952424097001}
   m_ConnectedBody: {fileID: 8305461232627106208}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
@@ -305,6 +306,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819559191838203253}
   m_ConnectedBody: {fileID: 6130623452440582277}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -477,6 +479,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997460615494059040}
   m_ConnectedBody: {fileID: 8305461232627106208}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -616,6 +619,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157821870753287839}
   m_ConnectedBody: {fileID: 7610412040210746089}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -1063,6 +1067,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548465846810265565}
   m_ConnectedBody: {fileID: 8305461232627106208}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
@@ -1172,6 +1177,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582224399103958233}
   m_ConnectedBody: {fileID: 2107745140911805887}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -2119,10 +2125,8 @@ GameObject:
   - component: {fileID: 1996729620730759997}
   - component: {fileID: 3478318287048472483}
   - component: {fileID: 3478318287048472487}
-  - component: {fileID: 3478318287048472480}
   - component: {fileID: 3478318287048472482}
   - component: {fileID: 8296172669271979850}
-  - component: {fileID: 4349802552013319324}
   - component: {fileID: 8296172669271979849}
   m_Layer: 10
   m_Name: Andromeda
@@ -2197,23 +2201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c35d6222afd64d43ba6332486bac715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3478318287048472480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4856170243785626708}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d879e64ac08d492697fb63b913bead8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  head: {fileID: 0}
-  lookAtTargetPosition: {x: 0, y: 0, z: 0}
-  lookAtCoolTime: 0.2
-  lookAtHeatTime: 0.2
-  looking: 1
 --- !u!195 &3478318287048472482
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2252,18 +2239,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &4349802552013319324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4856170243785626708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c223c28fd3084e48a34138bc48bb1bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8296172669271979849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2280,6 +2255,8 @@ MonoBehaviour:
   AllColliders: []
   health: 100
   resistance: 100
+  isAttacking: 0
+  isBeignAttacked: 0
 --- !u!1 &4911496196097743887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2361,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4964283375013384508}
   m_ConnectedBody: {fileID: 4865477124999833480}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -2523,6 +2501,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5266012149317550017}
   m_ConnectedBody: {fileID: 3082770882270286620}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -3173,6 +3152,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7950424974545305940}
   m_ConnectedBody: {fileID: 7610412040210746089}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
@@ -3281,6 +3261,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8053827541540128499}
   m_ConnectedBody: {fileID: 7610412040210746089}
+  m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1

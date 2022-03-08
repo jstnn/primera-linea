@@ -4,7 +4,6 @@ using MonsterLove.StateMachine;
 using System;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(CameraController))]
 public class GameManager : MonoBehaviour
 {
     //Declare which states we'd like use
@@ -36,7 +35,7 @@ public class GameManager : MonoBehaviour
         //Initialize State Machine Engine		
         fsm = StateMachine<States>.Initialize(this, States.Init);
 
-        camera = GetComponent<CameraController>();
+        camera = GameObject.Find("GameController").GetComponent<CameraController>();
     }
 
     private void Init_Enter()

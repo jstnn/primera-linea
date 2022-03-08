@@ -11,6 +11,9 @@ public class ClickToMove : MonoBehaviour
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+        m_Agent.speed = 4.5f;
+        m_Agent.angularSpeed = 500;
+        m_Agent.acceleration = 20;
     }
 
     void Update()
@@ -21,5 +24,8 @@ public class ClickToMove : MonoBehaviour
             if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
                 m_Agent.destination = m_HitInfo.point;
         }
+        Debug.Log("speed: "+m_Agent.speed);
+        Debug.Log("angularSpeed: "+m_Agent.angularSpeed);
+        Debug.Log("acceleration: "+m_Agent.acceleration);
     }
 }

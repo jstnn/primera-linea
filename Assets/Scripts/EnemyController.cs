@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
 
-    void OnTriggerEnter(Collider collision)
+    void OnCollisionEnter(Collision collision)
     {
-        Player player = collision.transform.GetComponent<Player>();
+        Player player = collision.gameObject.transform.GetComponent<Player>();
+        // Debug.Log("if OnCollisionEnter");
         if (player)
         {
-            player.DoRagdoll(true);
+            Debug.Log(collision+", "+player);
+            // Debug.Log("if player");
+            player.DoDamage(50);
+            // player.DoRagdoll(true);
         }
     }
 }
