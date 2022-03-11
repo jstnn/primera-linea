@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &818201468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818201469}
+  - component: {fileID: 818201470}
+  m_Layer: 10
+  m_Name: Hitbox
+  m_TagString: Hitbox_Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &818201469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818201468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8448696565509187143}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &818201470
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818201468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: -0.39, z: 1.25}
+  m_Center: {x: 0, y: 1.22, z: 0.64}
 --- !u!1 &205108997988363762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2172,7 @@ GameObject:
   - component: {fileID: 3478318287048472482}
   - component: {fileID: 8296172669271979850}
   - component: {fileID: 8296172669271979849}
+  - component: {fileID: 2600846040755397046}
   m_Layer: 10
   m_Name: Andromeda
   m_TagString: Player
@@ -2153,6 +2198,7 @@ Transform:
   - {fileID: 8270049471556961473}
   - {fileID: 4834126482830394921}
   - {fileID: 3213711741049840175}
+  - {fileID: 818201469}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2210,16 +2256,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 4856170243785626708}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.8
-  m_Speed: 3
-  m_Acceleration: 8
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 60
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 560
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -2251,12 +2297,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f76d2eca63c5406e9b05c3bd5fee933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCollider: {fileID: 3478318287048472483}
+  MainCollider: {fileID: 2600846040755397046}
   AllColliders: []
   health: 100
   resistance: 100
+  attack: 20
   isAttacking: 0
   isBeignAttacked: 0
+  isDead: 0
+  hitbox: {fileID: 818201468}
+--- !u!136 &2600846040755397046
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856170243785626708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.53
+  m_Height: 1.95
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.89, z: 0}
 --- !u!1 &4911496196097743887
 GameObject:
   m_ObjectHideFlags: 0
