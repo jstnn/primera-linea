@@ -3,6 +3,8 @@ using System.Collections;
 using MonsterLove.StateMachine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -42,8 +44,17 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() {
         Debug.Log("PRESSED START");
-        
         fsm.ChangeState(States.Countdown);
+    }
+
+    public void WinGame() {
+        Debug.Log("PRESSED START");
+        fsm.ChangeState(States.Win);
+    }
+
+    public void AddPlayer() {
+        GameObject rioter = Instantiate(prefab, startPoint.position, Quaternion.identity) as GameObject;
+        players.Add(rioter.GetComponent<Player>());
     }
 
     public void RemovePlayer(GameObject deadPlayer)
@@ -53,8 +64,8 @@ public class GameManager : MonoBehaviour
     }
 
     private bool isEverybodyDead() {
-     for ( int i = 0; i < players.Count; ++i ) {
-        if ( players[ i ].isDead == false ) {
+     for (int i = 0; i < players.Count; ++i) {
+        if (players[i].isDead == false) {
             return false;
         }
     }
@@ -64,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void Init_Enter()
     {
+        endedGame=false;
         Debug.Log("START GAME");
         Debug.Log("Waiting for start button to be pressed");
         if (displayStats)
@@ -78,9 +90,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //We can return a coroutine, this is useful animations and the like
     private IEnumerator Countdown_Enter()
     {
+        endedGame=false;
         displayStats.SetCountdown("Preparad@?");
         displayStats.SetCanvas("Countdown");
         displayStats.SetCountdown("Starting in 3...");
@@ -96,22 +108,23 @@ public class GameManager : MonoBehaviour
 
     private void Play_Enter()
     {
+        endedGame=false;
         displayStats.SetCanvas("Play");
         Debug.Log("FIGHT!");
         for (int i = 0; i < startingPlayers; i++)
-        {
-            GameObject rioter = Instantiate(prefab, startPoint.position, Quaternion.identity) as GameObject;
-            players.Add(rioter.GetComponent<Player>());
-        }
+            AddPlayer();
     }
 
     private void Play_Update()
     {
         if (endedGame) return;
-        if (!endedGame && isEverybodyDead()) {
+        if (!endedGame && isEverybodyDead())
             fsm.ChangeState(States.Lose);
+
+        if (players.Count > 0) {
+            displayStats.SetHealth(players.First().health);
+            displayStats.SetAlivePlayers(players.Count);
         }
-        displayStats.SetHealth(players[0].health);
     }
 
     void Play_Exit()
@@ -121,12 +134,14 @@ public class GameManager : MonoBehaviour
 
     void Lose_Enter()
     {
+        endedGame=true;
         displayStats.SetCanvas("Lose");
         Debug.Log("Lost");
     }
 
     void Win_Enter()
     {
+        endedGame=true;
         displayStats.SetCanvas("Win");
         Debug.Log("Won");
     }

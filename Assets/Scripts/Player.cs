@@ -53,23 +53,23 @@ public class Player : MonoBehaviour
                 agent.destination = hitInfo.point;
             }
         }
-        if ((fsm.State != States.Walk) && agent.velocity.sqrMagnitude > 0.1f && agent.velocity.sqrMagnitude < 60f)
+        if ((fsm.State != States.Dead) && (fsm.State != States.Walk) && agent.velocity.sqrMagnitude > 0.1f && agent.velocity.sqrMagnitude < 60f)
         {
              fsm.ChangeState(States.Walk);
         }
-        if ((fsm.State != States.Attack || fsm.State != States.Attacked) && agent.velocity.sqrMagnitude < 0.1f)
+        if ((fsm.State != States.Dead) && (fsm.State != States.Attack || fsm.State != States.Attacked) && agent.velocity.sqrMagnitude < 0.1f)
         {
              fsm.ChangeState(States.Idle);
         }
-        if ((fsm.State != States.Run) && (agent.velocity.sqrMagnitude > 60f))
+        if ((fsm.State != States.Dead) && (fsm.State != States.Run) && (agent.velocity.sqrMagnitude > 60f))
         {
              fsm.ChangeState(States.Run);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ((fsm.State != States.Dead) && Input.GetKeyDown(KeyCode.Space))
         {
             fsm.ChangeState(States.Attack);
         }
-        if (health<1)
+        if ((fsm.State != States.Dead) && health<1)
         {
             fsm.ChangeState(States.Dead);
         }
@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
 
     public void DoRagdoll()
     {
+        hitbox.SetActive(false);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         foreach (var col in AllColliders)
             col.enabled = true;
@@ -122,25 +123,8 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Animator>().enabled = false;
         GetComponent<LocomotionSimpleAgent>().enabled = false;
-        agent.enabled = false;
         agent.isStopped = true;
-    }
-
-    public void CeaseAllFunctions()
-    {
-        hitbox.SetActive(false);
-        foreach (CapsuleCollider collider in AllColliders)
-            collider.enabled = false;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        foreach (var col in AllColliders)
-            col.enabled = false;
-
-        MainCollider.enabled = false;
-        GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Animator>().enabled = false;
-        GetComponent<LocomotionSimpleAgent>().enabled = false;
         agent.enabled = false;
-        agent.isStopped = true;
     }
 
     private void Run_Enter()
@@ -182,6 +166,5 @@ public class Player : MonoBehaviour
         Debug.Log("DIED XXXX LOL");
         gameManager.RemovePlayer(this.gameObject);
         DoRagdoll();
-        CeaseAllFunctions();
     }
 }

@@ -31,13 +31,11 @@ public class Enemy : MonoBehaviour
     private StateMachine<States> fsm;
     private NavMeshAgent agent;
     private Animator anim;
-    private NavMeshAgent pathfinder;
     private GameManager gameManager;
 
     void Awake()
     {
         fsm = StateMachine<States>.Initialize(this, States.Idle);
-        pathfinder = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         MainCollider = GetComponent<CapsuleCollider>();
@@ -53,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
         if ((fsm.State != States.Attacked) && target && !target.isDead)
         {
-            pathfinder.SetDestination(target.transform.position);
+            agent.SetDestination(target.transform.position);
         }
         if ((fsm.State != States.Walk) && agent.velocity.sqrMagnitude > 0.1f && agent.velocity.sqrMagnitude < 60f)
         {
@@ -124,6 +122,7 @@ public class Enemy : MonoBehaviour
 
     public void DoRagdoll()
     {
+        hitbox.SetActive(false);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         foreach (var col in AllColliders)
             col.enabled = true;
@@ -132,27 +131,8 @@ public class Enemy : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Animator>().enabled = false;
         GetComponent<LocomotionSimpleAgent>().enabled = false;
-        agent.enabled = false;
         agent.isStopped = true;
-    }
-
-    public void CeaseAllFunctions()
-    {
-        agent.Stop();
-        Debug.Log("CEASE ALL XX");
-        hitbox.SetActive(false);
-        foreach (CapsuleCollider collider in AllColliders)
-            collider.enabled = false;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        foreach (var col in AllColliders)
-            col.enabled = false;
-
-        MainCollider.enabled = false;
-        GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Animator>().enabled = false;
-        GetComponent<LocomotionSimpleAgent>().enabled = false;
         agent.enabled = false;
-        agent.isStopped = true;
     }
 
     private void Run_Enter()
@@ -193,6 +173,5 @@ public class Enemy : MonoBehaviour
     {
         isDead=true;
         DoRagdoll();
-        CeaseAllFunctions();
     }
 }
